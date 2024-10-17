@@ -84,7 +84,7 @@ header {
     position: relative;
     background-color: var(--branco);
     box-shadow: var(--sombra-padrao);
-    padding: .5%;
+    padding: 10px 0px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -98,13 +98,17 @@ header {
     left: calc(1% - 5px);
 }
 
-
+a:has(.senai-logo) {
+    height: min-content;
+    display: flex;
+    align-items: center;
+}
 .senai-logo {
-    height: var(--header-icon-size);
+    width: min(160px, 55vw);
 }
 
 main {
-    padding-top: 5%;
+    padding-top: 50px;
     position: relative;
     width: 100vw;
     min-height: 100vh;
@@ -132,131 +136,113 @@ main::before {
     z-index: -1;
 }
 
-/* Animação do texto "Senai ID */
-.senai-id {
-    position: relative;
-    display: inline-block;
-    color: var(--vermelho);
-    text-decoration: none;
-}
+/* Página de login (index.html) */
 
-.senai-id::after,
-.update-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 100%;
-    height: 2px;
-    background-color: var(--vermelho);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-}
-
-.senai-id:hover::after,
-.update-link:hover::after {
-    transform: scaleX(1);
-}
-
-.update-link:hover {
-    color: var(--vermelho);
-}
-
-.inf-header {
-    display: flex;
-    position: relative;
-    left: 100px;
-    gap: 100px;
-}
-
-.update-link {
-    color: var(--cinza);
-    text-decoration: none;
-    position: relative;
-}
-
-
-.notifications-header {
-    position: relative;
-    top: -8px;
-    left: -100px;
-    background-color: var(--vermelho);
-    height: 12px;
-    width: 12px;
-    border-radius: 100px;
-}
-
-.profile-img {
-    border-radius: 100px;
-    border: 2px solid var(--vermelho);
-    height: 35px;
-    width: 35px;
-}
-
-.profile-div {
+.login-form-container {
+    width: 30rem;
+    height: 30rem;
+    max-width: calc(100% - 40px);
+    background-color: var(--branco);
     display: flex;
     align-items: center;
-    gap: 50px;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px 10px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-padrao);
 }
 
-.mobile-menu {
-    display: none;
+.login-form-container > form {
+    width: 90%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
-/* Estilos responsivos */
-@media (max-width: 768px) {
-
-    nav{
-        height: 0px;
-    }
-
-    /* Ocultar links padrão no header e mostrar o botão do menu hamburger */
-    .inf-header,
-    .profile-div {
-        display: none;
-        /* Oculta os links de navegação padrão */
-    }
-
-    .hamburger-menu {
-        display: flex;
-    }
-
-    /* Estilo do menu suspenso para dispositivos móveis */
-    .mobile-menu {
-        transform: translateY(-900px);
-        transition: transform 1s ease;
-        position: sticky;
-        display: flex;
-        flex-direction: column;
-        color: var(--branco);
-        top: 80px;
-        left: 0;
-        width: 100vw;
-        box-shadow: var(--sombra-padrao);
-        z-index: 4;
-        background-color: var(--branco);
-
-    }
-
-    .mobile-menu a {
-        padding: 15px;
-        border-bottom: 1px solid var(--cinza);
-        text-align: center;
-        color: var(--preto);
-    }
-
-    .mobile-menu a:hover {
-        background-color: var(--vermelho);
-        color: var(--branco);
-    }
-
-    /* Mostrar o menu quando ativo */
-    .mobile-menu.active {
-        transform: translateY(0px);
-        background-color: var(--branco);
-    }
-
+.login-form-container h2 {
+    color: var(--vermelho);
+    font-size: 2.3rem;
 }
 
-/* Página de login (index.html) */
+
+.icon-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    padding: 10px;
+    height: 3rem;
+    border: 2px solid var(--vermelho); 
+}
+
+.icon-input input {
+    width: 100%;
+    height: 2.5rem;
+    background-color: transparent;
+    border: none;
+    z-index: 2;
+    outline: none;
+}
+.icon-input:focus-within .floating-label,
+.icon-input input:valid ~ .floating-label {
+    background-color: var(--branco);
+    color: var(--vermelho);
+    transform: translateY(-25px);
+}
+
+.icon-input i {
+    font-size: 1.5rem;
+}
+
+.floating-label {
+    transition: all .3s ease;
+    position: absolute;
+    font-size: 1.2rem;
+    z-index: 1;
+    left: 10px;
+    top: 10px; 
+}
+
+#hidden-eye-icon {
+    cursor: pointer;
+}
+
+.login-links {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-links a {
+    color: var(--vermelho);
+    text-decoration: underline;
+}
+
+.login-links span {
+    display: flex;
+    gap: 10px;
+    accent-color: var(--vermelho);
+    justify-content: space-around;
+}
+
+.login-form-container button {
+    width: 90%;
+    padding: 10px;
+    background-color: var(--vermelho);
+    font-size: 1.2rem;
+    color: var(--branco);
+    outline: none;
+    border-radius: 8px;
+    border: none;
+    transition: all .2s ease;
+}
+
+.login-form-container button:hover {
+    transform: scale(1.02);
+}
+.login-form-container button:active {
+    transform: scale(0.98);
+}
