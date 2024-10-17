@@ -39,7 +39,9 @@ header {
 }
 
 .header-red-container {
+    position: relative;
     background-color: var(--vermelho);
+    z-index: 10;
     width: 100vw;
     display: flex;
     height: 35px;
@@ -49,13 +51,14 @@ header {
     align-items: center;
 }
 
-.header-red-container > a {
+.header-red-container>a {
     text-decoration: none;
     font-weight: 550;
     color: var(--branco);
 }
 
-.header-red-container > button, .header-white-container > button {
+.header-red-container>button,
+.header-white-container>button {
     width: var(--header-icon-size);
     height: var(--header-icon-size);
     font-size: var(--header-icon-size);
@@ -78,12 +81,15 @@ header {
 }
 
 .header-white-container {
+    position: relative;
     background-color: var(--branco);
     box-shadow: var(--sombra-padrao);
     padding: .5%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    z-index: 10;
+
 }
 
 .return-button {
@@ -98,17 +104,15 @@ header {
 }
 
 main {
-    padding-top: 1%;
+    padding-top: 5%;
     position: relative;
     width: 100vw;
     min-height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    overflow-x: hidden; 
-    gap: 100px;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-x: hidden;
 }
 
 /* Inserindo a imagem de fundo */
@@ -128,115 +132,131 @@ main::before {
     z-index: -1;
 }
 
+/* Animação do texto "Senai ID */
+.senai-id {
+    position: relative;
+    display: inline-block;
+    color: var(--vermelho);
+    text-decoration: none;
+}
+
+.senai-id::after,
+.update-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--vermelho);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.senai-id:hover::after,
+.update-link:hover::after {
+    transform: scaleX(1);
+}
+
+.update-link:hover {
+    color: var(--vermelho);
+}
+
+.inf-header {
+    display: flex;
+    position: relative;
+    left: 100px;
+    gap: 100px;
+}
+
+.update-link {
+    color: var(--cinza);
+    text-decoration: none;
+    position: relative;
+}
+
+
+.notifications-header {
+    position: relative;
+    top: -8px;
+    left: -100px;
+    background-color: var(--vermelho);
+    height: 12px;
+    width: 12px;
+    border-radius: 100px;
+}
+
+.profile-img {
+    border-radius: 100px;
+    border: 2px solid var(--vermelho);
+    height: 35px;
+    width: 35px;
+}
+
+.profile-div {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+
+    nav{
+        height: 0px;
+    }
+
+    /* Ocultar links padrão no header e mostrar o botão do menu hamburger */
+    .inf-header,
+    .profile-div {
+        display: none;
+        /* Oculta os links de navegação padrão */
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    /* Estilo do menu suspenso para dispositivos móveis */
+    .mobile-menu {
+        transform: translateY(-900px);
+        transition: transform 1s ease;
+        position: sticky;
+        display: flex;
+        flex-direction: column;
+        color: var(--branco);
+        top: 80px;
+        left: 0;
+        width: 100vw;
+        box-shadow: var(--sombra-padrao);
+        z-index: 4;
+        background-color: var(--branco);
+
+    }
+
+    .mobile-menu a {
+        padding: 15px;
+        border-bottom: 1px solid var(--cinza);
+        text-align: center;
+        color: var(--preto);
+    }
+
+    .mobile-menu a:hover {
+        background-color: var(--vermelho);
+        color: var(--branco);
+    }
+
+    /* Mostrar o menu quando ativo */
+    .mobile-menu.active {
+        transform: translateY(0px);
+        background-color: var(--branco);
+    }
+
+}
+
 /* Página de login (index.html) */
-
-.inputs {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 50px 70px 50px;
-    border-radius: 8px;
-}
-
-.inputs-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 90%;
-    height: auto;
-    gap: 10px;
-    padding: 1%;
-
-}
-
-.inputs-container > input {
-    padding: 10px;
-}
-
-.carteirinha {
-    background-color: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 400px;
-}
-
-.carteirinha-senai-logo {
-    width: 40%;
-    margin-bottom: 10%;
-}
-
-.informacoes-usuario {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.carteirinha-pfp {
-    width: 50%;
-    height: auto;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #E00000;
-}
-
-.carteirinha > h3 {
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    margin: 10px 0 20px;
-}
-
-.informacoes-carteirinha {
-    text-align: left;
-    margin-top: 20px;
-}
-
-.info-line-carteirinha {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-}
-
-.info-line-carteirinha > label {
-    font-weight: regular;
-    font-size: clamp(0.8rem, 1.5vw, 1rem); 
-}
-
-.info-line-carteirinha > p {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    margin: 5px 0;
-    font-weight: bold;
-}
-
-.selo-img {
-    width: 100%;
-}
-
-.selo-validade {
-    width: 20%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.curso {
-    margin-top: 20px;
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-    font-weight: bold;
-}
-
-.curso-container-carteirinha {
-    text-align: center;
-    margin-top: 10%;
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}

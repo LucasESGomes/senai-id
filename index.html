@@ -1,84 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Senai ID</title>
-    
+
     <!-- Stylesheets  -->
     <link rel="stylesheet" href="stylesheets/main.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
     <header>
         <div class="header-red-container">
             <a class="header-link" href="">Suporte</a>
-            <button class="hamburger-menu"><i class='bx bx-menu'></i></button>
+            <button class="hamburger-menu" onclick="toggleMenu()"><i class='bx bx-menu'></i></button>
         </div>
-        <div class="header-white-container">
-            <button class="return-button"><i class='bx bx-left-arrow-alt' ></i></button>
-            <img class="senai-logo" src="img/SENAI_logo.png">
-        </div>
+        <nav>
+            <div class="header-white-container">
+                <button class="return-button"><i class='bx bx-left-arrow-alt'></i></button>
+                <a href=""><img class="senai-logo" src="img/SENAI_logo.png"></a>
+                <div class="inf-header">
+                    <a href="">
+                        <p class="senai-id">Senai ID</p>
+                    </a>
+                    <a href="">
+                        <p class="update-link">Atualizar Cadastro</p>
+                    </a>
+                    <div class="notifications-header"></div>
+                </div>
+                <div class="profile-div">
+                    <p class="profile-text">Olá, Fulano</p>
+                    <div class="profile-img"></div>
+                </div>
+            </div>
+
+            <!-- Menu para dispositivos móveis -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a class="hide-mobile" href="">Senai ID</a>
+                <a class="hide-mobile" href="">Atualizar Cadastro</a>
+                <a class="hide-mobile" href="">Suporte</a>
+            </div>
+        </nav>
     </header>
 
     <main>
-
-       <div class="inputs">
-        <h2>
-            Registrar aluno
-        </h2>
-
-        <div class="inputs-container">
-            <input autocomplete="off" placeholder="Nome" id="nome-input" type="text">
-            <input autocomplete="off" placeholder="Rg" id="rg-input" type="text">
-            <input autocomplete="off" placeholder="Data de nascimento" id="data-nascimento-input" type="date">
-            <input autocomplete="off" placeholder="Curso" id="curso-input" type="text">
-            <input autocomplete="off" placeholder="Matrícula" id="matricula-input" type="number">
-
-            <input id="carteirinha-pfp-input" type="file">
-            <button>CONFIRMA</button>
-        </div>
-        
-        
-    </div>
-    
-            <div class="carteirinha">
-                <img class="carteirinha-senai-logo" src="img/SENAI_logo.png">
-                
-                <span class="informacoes-usuario">
-                    <img id="carteirinha-pfp" class="carteirinha-pfp" src="img/placeholder.jpg">
-                    <h3 id="nome_previsu"></h3>
-                </span>
-
-                <div class="informacoes-carteirinha">
-                    <div class="info-line-carteirinha">
-                        <span>
-                            <label for="rg_previsu">RG</label>
-                            <p id="rg_previsu">-</p>
-                        </span>
-                        <span>
-                            <label for="matricula_previsu">Matrícula</label>
-                            <p id="matricula_previsu">-</p>
-                        </span>
-                    </div>
-                    <div class="info-line-carteirinha">
-                        <span>
-                            <label for="data_nascimento_previsu">Nascido em</label>
-                            <p id="data_nascimento_previsu">-</p>
-                        </span>
-                        <span class="selo-validade">
-                            <img src="img/placeholder.jpg" class="selo-img">
-                        </span>
-                    </div>
-                    <div class="curso-container-carteirinha">
-                        <label for="curso_previsu">Curso</label>
-                        <p id="curso_previsu">-</p>
-                    </div>
-                </div>
-
-
-            </div>
+        <h1 class="page-title"></h1>
     </main>
-    <script src="src/previsualizacao-carteirinha.js"></script>
+
+    <script>
+        // Função para abrir/fechar o menu no mobile
+        function toggleMenu() {
+            var menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("active");
+        }
+    </script>    
 </body>
+
 </html>
